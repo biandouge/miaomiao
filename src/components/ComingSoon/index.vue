@@ -1,114 +1,90 @@
 <template>
     <div class="movie_body">
-        <ul>
-            <li>
-                <div class="pic_show"><img src="/images/movie_1.jpg"></div>
-                <div class="info_list">
-                    <h2>无名之辈</h2>
-                    <p><span class="person">17746</span> 人想看</p>
-                    <p>主演: 陈建斌,任素汐,潘斌龙</p>
-                    <p>2018-11-30上映</p>
-                </div>
-                <div class="btn_pre">
-                    预售
-                </div>
-            </li>
-            <li>
-                <div class="pic_show"><img src="/images/movie_2.jpg"></div>
-                <div class="info_list">
-                    <h2>毒液：致命守护者</h2>
-                    <p><span class="person">2346</span> 人想看</p>
-                    <p>主演: 汤姆·哈迪,米歇尔·威廉姆斯,里兹·阿迈德</p>
-                    <p>2018-11-30上映</p>
-                </div>
-                <div class="btn_pre">
-                    预售
-                </div>
-            </li>
-            <li>
-                <div class="pic_show"><img src="/images/movie_1.jpg"></div>
-                <div class="info_list">
-                    <h2>无名之辈</h2>
-                    <p><span class="person">17746</span> 人想看</p>
-                    <p>主演: 陈建斌,任素汐,潘斌龙</p>
-                    <p>2018-11-30上映</p>
-                </div>
-                <div class="btn_pre">
-                    预售
-                </div>
-            </li>
-            <li>
-                <div class="pic_show"><img src="/images/movie_2.jpg"></div>
-                <div class="info_list">
-                    <h2>毒液：致命守护者</h2>
-                    <p><span class="person">2346</span> 人想看</p>
-                    <p>主演: 汤姆·哈迪,米歇尔·威廉姆斯,里兹·阿迈德</p>
-                    <p>2018-11-30上映</p>
-                </div>
-                <div class="btn_pre">
-                    预售
-                </div>
-            </li>
-            <li>
-                <div class="pic_show"><img src="/images/movie_1.jpg"></div>
-                <div class="info_list">
-                    <h2>无名之辈</h2>
-                    <p><span class="person">17746</span> 人想看</p>
-                    <p>主演: 陈建斌,任素汐,潘斌龙</p>
-                    <p>2018-11-30上映</p>
-                </div>
-                <div class="btn_pre">
-                    预售
-                </div>
-            </li>
-            <li>
-                <div class="pic_show"><img src="/images/movie_2.jpg"></div>
-                <div class="info_list">
-                    <h2>毒液：致命守护者</h2>
-                    <p><span class="person">2346</span> 人想看</p>
-                    <p>主演: 汤姆·哈迪,米歇尔·威廉姆斯,里兹·阿迈德</p>
-                    <p>2018-11-30上映</p>
-                </div>
-                <div class="btn_pre">
-                    预售
-                </div>
-            </li>
-            <li>
-                <div class="pic_show"><img src="/images/movie_1.jpg"></div>
-                <div class="info_list">
-                    <h2>无名之辈</h2>
-                    <p><span class="person">17746</span> 人想看</p>
-                    <p>主演: 陈建斌,任素汐,潘斌龙</p>
-                    <p>2018-11-30上映</p>
-                </div>
-                <div class="btn_pre">
-                    预售
-                </div>
-            </li>
-            <li>
-                <div class="pic_show"><img src="/images/movie_2.jpg"></div>
-                <div class="info_list">
-                    <h2>毒液：致命守护者</h2>
-                    <p><span class="person">2346</span> 人想看</p>
-                    <p>主演: 汤姆·哈迪,米歇尔·威廉姆斯,里兹·阿迈德</p>
-                    <p>2018-11-30上映</p>
-                </div>
-                <div class="btn_pre">
-                    预售
-                </div>
-            </li>
-        </ul>
+        <Loading v-if="isLoading" />
+        <Scroller v-else :handleToScroll="handleToScroll" :handleToTouchEnd="handleToTouchEnd">
+            <ul>
+                <li class="pullDown">{{ pullDownMsg }}</li>
+                <li v-for="item in comingList" :key="item.id">
+                    <div class="pic_show"><img :src="item.img | setWH('128.180')" /></div>
+                    <div class="info_list">
+                        <h2>{{item.nm}} <img v-if="item.version == 'v3d'" style="width: 25px;height:25px; " src="@/assets/3dimax.jpg" alt=""></h2>
+                        <p>观众评 <span class="grade">{{item.sc}}</span></p>
+                        <p>主演: {{item.star}}</p>
+                        <p>{{item.comingTitle}}</p>
+                    </div>
+                    <div class="btn_mall">
+                        购票
+                    </div>
+                </li>
+            </ul>
+        </Scroller>
     </div>
 </template>
 
 <script>
     export default {
-        name: "ComingSoon"
+        name: "ComingSoon",
+        data(){
+            return{
+                comingList: [],
+                pullDownMsg: '',
+                isLoading: true,
+                prevCityId: -1
+            }
+        },
+        activated() {
+            let cityId = this.$store.state.city.id; //获取状态里城市ID
+            //打个时间差，如果当前城市ID等于上一个城市ID，我们就不执行请求，反之执行，
+            // 这样避免了我们在从将要上映返回正在上映的时候重复执行ajax请求，
+            // 而我们改变城市的时候是需要执行请求的
+            if (this.prevCityId === cityId){ return; };
+            console.log('123');
+
+            this.isLoading = false; //重新显示一下加载，让用户能看到loading效果
+            this.axios.get('/api/movieComingList?cityId='+cityId).then((res)=>{
+                console.log(res);
+                let msg = res.data.msg;
+                if(msg === 'ok'){
+                    this.comingList = res.data.data.comingList; //把数据存储到data
+                    this.isLoading = false;
+                    this.prevCityId = cityId; //执行请求成功之后改变上个城市prevCityId的值为我们获得的状态值
+                }
+            })
+        },
+        methods:{
+            handelToDetail : function () {
+                console.log('hello')
+            },
+            //写两个方法handleToScroll和handleToScroll用户父子通信传递
+            handleToScroll : function (pos) {
+                if( pos > '30'){
+                    this.pullDownMsg = '正在更新中'
+                }
+            },
+            handleToTouchEnd : function (pos) {
+                if(pos.y > 30){
+                    this.axios.get('/api/movieOnInfoList?cityId=44').then((res)=> {
+                        console.log(res);
+                        let msg = res.data.msg;
+                        if (msg === 'ok') {
+                            this.pullDownMsg = '更新成功';
+                            setTimeout(()=>{ //做更新延迟，让用户能够感受到数据更新
+                                this.movieList = res.data.data.movieList; //把数据存储到data
+                                this.pullDownMsg = ''; //置空
+                            },1000);
+
+                        }
+                    });
+                }
+
+            }
+        }
     }
 </script>
 
 <style scoped>
-    #content .movie_body{ flex:1; overflow:auto;}
+    #content .movie_body{ flex:1;position: fixed; left:0; top:100px; bottom:50px;height: 80%; width: 100%; box-sizing: border-box}
+    /*.movie_body{padding-top: 45px;}*/
     .movie_body ul{ margin:0 12px; overflow: hidden;}
     .movie_body ul li{ margin-top:12px; display: flex; align-items:center; border-bottom: 1px #e6e6e6 solid; padding-bottom: 10px;}
     .movie_body .pic_show{ width:64px; height: 90px;}
@@ -120,4 +96,6 @@
     .movie_body .info_list img{ width:50px; position: absolute; right:10px; top: 5px;}
     .movie_body .btn_mall , .movie_body .btn_pre{ width:47px; height:27px; line-height: 28px; text-align: center; background-color: #f03d37; color: #fff; border-radius: 4px; font-size: 12px; cursor: pointer;}
     .movie_body .btn_pre{ background-color: #3c9fe6;}
+    .movie_body .pullDown{margin: 0;padding: 0;border:none;}
+
 </style>
