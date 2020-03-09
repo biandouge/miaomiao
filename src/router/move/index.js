@@ -18,7 +18,7 @@ export  default {
             path: 'search',
             component : () => import('@/components/Search'), //按需加载
         },
-        {
+        { //配置重定向
             path:'/move',
             redirect: '/move/nowPlaying'
         }
