@@ -13,14 +13,14 @@ const routes = [
     //防止找不到路由的时候页面挂掉，配置一下页面重定向
   {
     path: '/*',
-    redirect: '/move'
+    redirect: '/move' //默认指向到move页面
   }
-]
+];
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
-})
+});
 
 export default router

@@ -43,6 +43,7 @@
             message(newVal){
                 let that = this;
                 let cityId = this.$store.state.city.id;
+
                 // 取消上一次请求
                 this.cancelRequest();
 

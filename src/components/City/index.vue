@@ -94,7 +94,7 @@
                 //         hotList.push(val);
                 //     }
                 // }
-                console.log(hotList);
+                //console.log(hotList);
 
                 for (let i=0;i<cities.length;i++){ //循环所有城市
                     let firstLetter = cities[i].py.substring(0,1).toUpperCase(); //获取每个城市拼音首字母并转化为大写
@@ -133,7 +133,7 @@
                     }
                     return  true;
                 }
-                console.log(cityList);
+                //console.log(cityList);
                 return {
                     cityList,
                     hotList
