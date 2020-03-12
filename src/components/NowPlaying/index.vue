@@ -5,9 +5,9 @@
             <ul>
                 <li class="pullDown">{{ pullDownMsg }}</li>
                 <li v-for="item in movieList" :key="item.id">
-                    <div class="pic_show" @tap="handelToDetail" ><img :src="item.img | setWH('128.180')" /></div>
+                    <div class="pic_show" @tap="handelToDetail(item.id)" ><img :src="item.img | setWH('128.180')" /></div>
                     <div class="info_list">
-                        <h2>{{item.nm}} <img v-if="item.version == 'v3d'" style="width: 25px;height:25px; " src="@/assets/3dimax.jpg" alt=""></h2>
+                        <h2 @tap="handelToDetail(item.id)">{{item.nm}} <img v-if="item.version == 'v3d'" style="width: 25px;height:25px; " src="@/assets/3dimax.jpg" alt=""></h2>
                         <p>观众评 <span class="grade">{{item.sc}}</span></p>
                         <p>主演: {{item.star}}</p>
                         <p>{{item.showInfo}}</p>
@@ -89,8 +89,9 @@
             })
         },
         methods:{
-            handelToDetail : function () {
-                console.log('hello')
+            handelToDetail(movieId) {
+                //console.log(movieId)
+                this.$router.push('/move/detail/1/' + movieId); //跳转到详情页
             },
             //写两个方法handleToScroll和handleToScroll用户父子通信传递
             handleToScroll : function (pos) {
