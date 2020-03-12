@@ -1,7 +1,6 @@
 <template>
     <div class="city_body">
         <div class="city_list">
-<<<<<<< HEAD
             <Loading v-if="isLoading" />
             <Scroller v-else ref="city_list">
                 <div>
@@ -22,22 +21,6 @@
                 </div>
             </Scroller>
 
-=======
-            <div class="city_hot">
-                <h2>热门城市</h2>
-                <ul class="clearfix">
-                    <li  v-for="item in hotList" :key="item.id">{{ item.nm }}</li>
-                </ul>
-            </div>
-            <div class="city_sort" ref="city_sort">
-                <div v-for="item in cityList" :key="item.index">
-                    <h2>{{ item.index }}</h2>
-                    <ul>
-                        <li v-for="itemList in item.list" :key="itemList.id">{{ itemList.nm }}</li>
-                    </ul>
-                </div>
-            </div>
->>>>>>> 1825232443f32a84699b65f1e77a3236a66cf2e8
         </div>
         <div class="city_index">
             <ul>
@@ -57,7 +40,6 @@
                 cityList: [],
                 hotList: [],
                 current:0,
-<<<<<<< HEAD
                 isLoading: true
             }
         },
@@ -94,22 +76,7 @@
             }
 
 
-=======
-            }
-        },
-        mounted() {
-            this.axios.get('/api/cityList').then((res)=>{
-                console.log(res);
-                let msg = res.data.msg;
-                if(msg === 'ok'){
-                    let cities = res.data.data.cities;
-                    //响应式映射
-                    var { cityList,hotList } = this.formatCityList(cities); //记得要加上this
-                    this.cityList = cityList;
-                    this.hotList = hotList;
-                }
-            })
->>>>>>> 1825232443f32a84699b65f1e77a3236a66cf2e8
+
         },
         methods : {
             /*格式化列表数据*/
@@ -128,11 +95,7 @@
                 //         hotList.push(val);
                 //     }
                 // }
-<<<<<<< HEAD
-                //console.log(hotList);
-=======
-                console.log(hotList);
->>>>>>> 1825232443f32a84699b65f1e77a3236a66cf2e8
+
 
                 for (let i=0;i<cities.length;i++){ //循环所有城市
                     let firstLetter = cities[i].py.substring(0,1).toUpperCase(); //获取每个城市拼音首字母并转化为大写
@@ -171,11 +134,7 @@
                     }
                     return  true;
                 }
-<<<<<<< HEAD
-                //console.log(cityList);
-=======
-                console.log(cityList);
->>>>>>> 1825232443f32a84699b65f1e77a3236a66cf2e8
+
                 return {
                     cityList,
                     hotList
@@ -190,7 +149,6 @@
                 //索引的index和列表中h2的index存在着对应关系
                 //通过改变h2的父元素，也就是列表的div的offseTop值，
                 //就可以显示对应的h2
-<<<<<<< HEAD
 
                 //this.$refs.city_sort.parentNode.scrollTop = h2[index].offsetTop;
                 this.$refs.city_list.toScrollTop(-h2[index].offsetTop);
@@ -208,10 +166,7 @@
 
                 //修改之后，使用编程式导航跳转页面
                 this.$router.push('/move');
-=======
-                this.$refs.city_sort.parentNode.scrollTop = h2[index].offsetTop;
 
->>>>>>> 1825232443f32a84699b65f1e77a3236a66cf2e8
             }
 
         },

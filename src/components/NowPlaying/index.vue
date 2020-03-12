@@ -1,6 +1,6 @@
 <template>
     <div class="movie_body">
-<<<<<<< HEAD
+
         <Loading v-if="isLoading" />
         <Scroller v-else :handleToScroll="handleToScroll" :handleToTouchEnd="handleToTouchEnd">
             <ul>
@@ -19,22 +19,6 @@
                 </li>
             </ul>
         </Scroller>
-=======
-        <ul>
-            <li v-for="item in movieList" :key="item.id">
-                <div class="pic_show"><img :src="item.img | setWH('128.180')" /></div>
-                <div class="info_list">
-                    <h2>{{item.nm}} <img v-if="item.version == 'v3d'" style="width: 25px;height:25px; " src="@/assets/3dimax.jpg" alt=""></h2>
-                    <p>观众评 <span class="grade">{{item.sc}}</span></p>
-                    <p>主演: {{item.star}}</p>
-                    <p>{{item.showInfo}}</p>
-                </div>
-                <div class="btn_mall">
-                    购票
-                </div>
-            </li>
-        </ul>
->>>>>>> 1825232443f32a84699b65f1e77a3236a66cf2e8
     </div>
 
 </template>
@@ -44,7 +28,7 @@
         name: "NowPlaying",
         data(){
             return{
-<<<<<<< HEAD
+
                 movieList: [],
                 pullDownMsg: '',
                 isLoading: true,
@@ -134,19 +118,7 @@
                 }
 
             }
-=======
-                movieList: []
-            }
-        },
-        mounted() {
-            this.axios.get('/api/movieOnInfoList?cityId=44').then((res)=>{
-                console.log(res);
-                let msg = res.data.msg;
-                if(msg === 'ok'){
-                    this.movieList = res.data.data.movieList; //把数据存储到data
-                }
-            })
->>>>>>> 1825232443f32a84699b65f1e77a3236a66cf2e8
+
         }
     }
 </script>
