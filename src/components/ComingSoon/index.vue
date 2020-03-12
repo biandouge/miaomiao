@@ -1,5 +1,6 @@
 <template>
     <div class="movie_body">
+<<<<<<< HEAD
         <Loading v-if="isLoading" />
         <Scroller v-else :handleToScroll="handleToScroll" :handleToTouchEnd="handleToTouchEnd">
             <ul>
@@ -18,6 +19,22 @@
                 </li>
             </ul>
         </Scroller>
+=======
+        <ul>
+            <li v-for="item in movieList" :key="item.id">
+                <div class="pic_show"><img :src="item.img | setWH('128.180')" /></div>
+                <div class="info_list">
+                    <h2>{{item.nm}} <img v-if="item.version == 'v3d'" style="width: 25px;height:25px; " src="@/assets/3dimax.jpg" alt=""></h2>
+                    <p>观众评 <span class="grade">{{item.sc}}</span></p>
+                    <p>主演: {{item.star}}</p>
+                    <p>{{item.comingTitle}}</p>
+                </div>
+                <div class="btn_mall">
+                    购票
+                </div>
+            </li>
+        </ul>
+>>>>>>> 1825232443f32a84699b65f1e77a3236a66cf2e8
     </div>
 </template>
 
@@ -26,6 +43,7 @@
         name: "ComingSoon",
         data(){
             return{
+<<<<<<< HEAD
                 comingList: [],
                 pullDownMsg: '',
                 isLoading: true,
@@ -81,6 +99,124 @@
 
             }
         }
+=======
+                movieList: [
+
+                    {
+                        "id": 1256872,
+                        "haspromotionTag": false,
+                        "img": "http://p0.meituan.net/w.h/movie/db82e48befc1c7e2e98425165b2500d76222872.jpg",
+                        "version": "v3d",
+                        "nm": "小丑",
+                        "preShow": false,
+                        "sc": 8.9,
+                        "globalReleased": true,
+                        "wish": 8859,
+                        "star": "王雷,古力娜扎,海一天",
+                        "rt": "2019-10-18",
+                        "showInfo": "今天1家影院放映1场",
+                        "showst": 3,
+                        "wishst": 0,
+                        "comingTitle": '3月9日 周六'
+                    },
+                    {
+                        "id": 1218273,
+                        "haspromotionTag": false,
+                        "img": "http://p1.meituan.net/w.h/movie/967b253953bc7e660cfadbf9d78f67b62852693.jpg",
+                        "version": "v2d imax",
+                        "nm": "唐人街探案",
+                        "preShow": false,
+                        "sc": 9.5,
+                        "globalReleased": true,
+                        "wish": 40632,
+                        "star": "肖央,谭卓,陈冲",
+                        "rt": "2019-12-13",
+                        "showInfo": "今天2家影院放映2场",
+                        "showst": 3,
+                        "wishst": 0,
+                        "comingTitle": '3月8日 周五'
+                    },
+                    {
+                        "id": 12186273,
+                        "haspromotionTag": false,
+                        "img": "http://p1.meituan.net/w.h/movie/967b253953bc7e660cfadbf9d78f67b62852693.jpg",
+                        "version": "v2d imax",
+                        "nm": "唐人街探案",
+                        "preShow": false,
+                        "sc": 9.5,
+                        "globalReleased": true,
+                        "wish": 40632,
+                        "star": "肖央,谭卓,陈冲",
+                        "rt": "2019-12-13",
+                        "showInfo": "今天2家影院放映2场",
+                        "showst": 3,
+                        "wishst": 0,
+                        "comingTitle": '3月8日 周五'
+                    },
+                    {
+                        "id": 12562872,
+                        "haspromotionTag": false,
+                        "img": "http://p0.meituan.net/w.h/movie/db82e48befc1c7e2e98425165b2500d76222872.jpg",
+                        "version": "v3d",
+                        "nm": "小丑",
+                        "preShow": false,
+                        "sc": 8.9,
+                        "globalReleased": true,
+                        "wish": 8859,
+                        "star": "王雷,古力娜扎,海一天",
+                        "rt": "2019-10-18",
+                        "showInfo": "今天1家影院放映1场",
+                        "showst": 3,
+                        "wishst": 0,
+                        "comingTitle": '3月9日 周六'
+                    },
+                    {
+                        "id": 12182473,
+                        "haspromotionTag": false,
+                        "img": "http://p1.meituan.net/w.h/movie/967b253953bc7e660cfadbf9d78f67b62852693.jpg",
+                        "version": "v2d imax",
+                        "nm": "唐人街探案",
+                        "preShow": false,
+                        "sc": 9.5,
+                        "globalReleased": true,
+                        "wish": 40632,
+                        "star": "肖央,谭卓,陈冲",
+                        "rt": "2019-12-13",
+                        "showInfo": "今天2家影院放映2场",
+                        "showst": 3,
+                        "wishst": 0,
+                        "comingTitle": '3月8日 周五'
+                    },
+                    {
+                        "id": 12568372,
+                        "haspromotionTag": false,
+                        "img": "http://p0.meituan.net/w.h/movie/db82e48befc1c7e2e98425165b2500d76222872.jpg",
+                        "version": "v3d",
+                        "nm": "小丑",
+                        "preShow": false,
+                        "sc": 8.9,
+                        "globalReleased": true,
+                        "wish": 8859,
+                        "star": "王雷,古力娜扎,海一天",
+                        "rt": "2019-10-18",
+                        "showInfo": "今天1家影院放映1场",
+                        "showst": 3,
+                        "wishst": 0,
+                        "comingTitle": '3月9日 周六'
+                    }
+                ]
+            }
+        },
+        mounted() {
+            this.axios.get('/api/movieComingList?cityId=10').then((res)=>{
+                console.log(res);
+                let msg = res.data.msg;
+                if(msg === 'ok'){
+                    //this.movieList = res.data.data.movieList; //把数据存储到data
+                }
+            })
+        },
+>>>>>>> 1825232443f32a84699b65f1e77a3236a66cf2e8
     }
 </script>
 

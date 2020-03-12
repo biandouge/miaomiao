@@ -1,5 +1,6 @@
 <template>
     <div class="cinema_body">
+<<<<<<< HEAD
         <Loading v-if="isLoading" />
         <Scroller v-else>
             <ul>
@@ -19,6 +20,24 @@
 
             </ul>
         </Scroller>
+=======
+        <ul>
+            <li v-for="item in cinemaList" :key="item.id">
+                <div>
+                    <span>{{ item.nm }}</span>
+                    <span class="q"><span class="price">{{ item.sellPrice }}</span> 元起</span>
+                </div>
+                <div class="address">
+                    <span>{{ item.addr }}</span>
+                    <span>{{ item.distance }}</span>
+                </div>
+                <div class="card">
+                    <div v-for="(num,key) in item.tag" v-if="num===1" :key="key" :class="key | classCard">{{ key | formatCard }}</div>
+                </div>
+            </li>
+
+        </ul>
+>>>>>>> 1825232443f32a84699b65f1e77a3236a66cf2e8
     </div>
 </template>
 
@@ -27,6 +46,7 @@
         name: "CiList",
         data(){
             return{
+<<<<<<< HEAD
                 cinemaList: [],
                 isLoading : true,
                 prevCityId: -1
@@ -48,6 +68,77 @@
                     this.cinemaList = res.data.data.cinemas; //把数据存储到data
                     this.isLoading = false;
                     this.prevCityId = cityId; //执行请求成功之后改变上个城市prevCityId的值为我们获得的状态值
+=======
+                cinemaList: [
+                    {
+                        'id' : 17158,
+                        'mark' : 0,
+                        'nm' : 'JIA嘉莱影城九城店',
+                        'sellPrice' : '34',
+                        'addr' : '松江区地铁九号线九城站',
+                        'distance' : '1071km',
+                        'tag' : {
+                            'allowRefund' : 1,
+                            'buyout' : 0,
+                            'cityCardTag' : 0,
+                            'deal' : 0,
+                            'endorse' : 1,
+                            'hallTypeVOList' :[],
+                            'sell' : 1,
+                            'snack' :1,
+                            'vipTag': '折扣卡'
+                        }
+                    },
+                    {
+                        'id' : 17159,
+                        'mark' : 0,
+                        'nm' : '中影星美国际影城水城店',
+                        'sellPrice' : '46',
+                        'addr' : '宏福苑水城广场4-5楼',
+                        'distance' : '171km',
+                        'tag' : {
+                            'allowRefund' : 1,
+                            'buyout' : 0,
+                            'cityCardTag' : 0,
+                            'deal' : 0,
+                            'endorse' : 1,
+                            'hallTypeVOList' :[],
+                            'sell' : 1,
+                            'snack' :1,
+                            'vipTag': '折扣卡'
+                        }
+                    },
+                    {
+                        'id' : 17160,
+                        'mark' : 0,
+                        'nm' : '奥斯卡影院',
+                        'sellPrice' : '18',
+                        'addr' : '中关村北大街187号',
+                        'distance' : '11km',
+                        'tag' : {
+                            'allowRefund' : 1,
+                            'buyout' : 0,
+                            'cityCardTag' : 0,
+                            'deal' : 0,
+                            'endorse' : 1,
+                            'hallTypeVOList' :[],
+                            'sell' : 1,
+                            'snack' :1,
+                            'vipTag': '折扣卡'
+                        }
+                    },
+
+                ],
+
+            }
+        },
+        mounted() {
+            this.axios.get('/api/cinemaList?cityId=10').then((res)=>{
+                console.log(res);
+                let msg = res.data.msg;
+                if(msg === 'ok'){
+                    //this.cinemaList = res.data.data.cinemas; //把数据存储到data
+>>>>>>> 1825232443f32a84699b65f1e77a3236a66cf2e8
                 }
             })
         },

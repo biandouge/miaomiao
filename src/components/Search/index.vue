@@ -42,12 +42,19 @@
         watch : {
             message(newVal){
                 let that = this;
+<<<<<<< HEAD
                 let cityId = this.$store.state.city.id;
 
                 // 取消上一次请求
                 this.cancelRequest();
 
                 this.axios.get('/api/searchList?cityId='+ cityId +'&kw='+newVal,{
+=======
+                // 取消上一次请求
+                this.cancelRequest();
+
+                this.axios.get('/api/searchList?cityId=10&kw='+newVal,{
+>>>>>>> 1825232443f32a84699b65f1e77a3236a66cf2e8
                     cancelToken: new this.axios.CancelToken(function executor(c) {
                         that.source = c;
                     })
