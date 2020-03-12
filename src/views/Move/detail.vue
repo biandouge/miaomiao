@@ -29,7 +29,7 @@
                 <ul class="swiper-wrapper">
                     <li class="swiper-slide" v-for="(item,index) in detailMovie.photos" :key="index">
                         <div>
-                            <img :src="item | setWH('147.208')" />
+                            <img :src="item | setWH('148.208')" />
                         </div>
                     </li>
 
@@ -96,7 +96,7 @@
 .detail_list .detail_list_img{ width:108px; height: 150px; border: solid 1px #f0f2f3; margin:20px;}
 .detail_list .detail_list_img img{ width:100%; height: 100%;}
 .detail_list .detail_list_info{ margin-top: 20px;}
-.detail_list .detail_list_info h2{ font-size: 20px; color:white; font-weight: normal; line-height: 40px;}
+.detail_list .detail_list_info h2{ font-size: 20px; color:#fff; font-weight: normal; line-height: 40px;}
 .detail_list .detail_list_info p{ color:white; line-height: 20px; font-size: 14px; color:#ccc;}
 
 #content .detail_intro{ padding: 10px;}
