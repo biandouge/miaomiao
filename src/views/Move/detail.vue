@@ -29,7 +29,7 @@
                 <ul class="swiper-wrapper">
                     <li class="swiper-slide" v-for="(item,index) in detailMovie.photos" :key="index">
                         <div>
-                            <img :src="item | setWH('148.208')" />
+                            <img :src="item | setWH('147.208')" />
                         </div>
                     </li>
 
